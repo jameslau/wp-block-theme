@@ -1,1 +1,0 @@
-{"version":3,"file":"./style-index.css","mappings":";;;AAGA;EACE,wBAJkB;AAEpB,C","sources":["webpack://firstblock/./src/style.scss"],"sourcesContent":["$box-alert-warning: yellow;\n$box-alert-violation: red;\n\n.wp-block-gutenbergblocks-firstblock {\n  background-color: $box-alert-warning;\n}"],"names":[],"sourceRoot":""}

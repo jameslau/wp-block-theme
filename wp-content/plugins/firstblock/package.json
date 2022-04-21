@@ -6,13 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
     "start": "wp-scripts start"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@wordpress/scripts": "^22.5.0"
+    "@wordpress/eslint-plugin": "^12.1.0",
+    "@wordpress/prettier-config": "^1.2.0",
+    "@wordpress/scripts": "^22.5.0",
+    "eslint-config-prettier": "^8.5.0"
   },
+  "prettier": "@wordpress/prettier-config",
   "dependencies": {
     "@wordpress/block-editor": "^8.6.0",
     "@wordpress/blocks": "^11.6.0"
