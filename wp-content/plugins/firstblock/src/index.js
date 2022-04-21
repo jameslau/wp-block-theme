@@ -4,11 +4,20 @@
 
 import { registerBlockType } from '@wordpress/blocks';
 
+// this hook will return all the props that are needed in our block
+// import { useBlockProps } from '@wordpress/block-editor';
+
+import Edit from "./edit";
+import Save from "./save";
+
+// included our main styles into our bundle
+import "./style.scss";
+
+// included our editor styles into our bundle 
+// note: you can set additional settings only on the editor to assist users
+// import "./editor.scss";
+
 registerBlockType('gutenbergblocks/firstblock', {
-	edit: function () {
-		return <p className="firstblock-component">Edit JSX</p>;
-	},
-	save: function () {
-		return <p className="firstblock-component">Save JSX</p>;
-	},
-});
+	edit: Edit,
+	save: Save,
+} );
