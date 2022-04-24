@@ -30,6 +30,9 @@ function blocks_theme_setup() {
 	// responsive videos embeds
 	add_theme_support( 'responsive-embeds' );
 
+	// add width support on the editor side
+	add_theme_support( 'align-wide' );
+
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
