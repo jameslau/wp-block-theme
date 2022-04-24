@@ -20,6 +20,16 @@ if ( ! defined( '_S_VERSION' ) ) {
  * as indicating support for post thumbnails.
  */
 function blocks_theme_setup() {
+
+	// add support for editor styling
+	add_theme_support( 'editor-styles' );
+	
+	// point to editor styling
+	add_editor_style( 'style-editor.css' );
+
+	// responsive videos embeds
+	add_theme_support( 'responsive-embeds' );
+
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
