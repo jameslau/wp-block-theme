@@ -2,6 +2,9 @@ body {
   background-color: #c9e5f0;
 }
 
+
+
+
 .wp-block {
   max-width: 800px;
 }
@@ -14,6 +17,9 @@ body {
   max-width: 1000px;
 }
 
+
+
+/* BACKGROUND COLOR */
 .has-strong-magenta-background-color {
   background-color: #a156b4;
 }
@@ -30,6 +36,21 @@ body {
   color: #eee;
 }
 
+/* FONT SIZE */
+.has-small-font-size {
+  font-size: 12px;
+}
+
+.has-regular-font-size {
+  font-size: 16px;
+}
+
+.has-large-font-size {
+  font-size: 36px;
+}
+
+
+/* GRADIENTS */
 .has-red-to-blue-gradient-background {
   background: linear-gradient(135deg, #e4064d 0%, #2c59ee 100%);
 }
