@@ -92,6 +92,13 @@ function blocks_theme_setup() {
 	// add custom line height
 	add_theme_support( 'custom-line-height' );
 
+	// add custom spacing
+	// note: this is called 'Dimensions' within the editor now
+	add_theme_support( 'custom-spacing' );
+
+	// custom measurement units
+	add_theme_support( 'custom-units', 'px', 'rem', 'em' );	
+
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
