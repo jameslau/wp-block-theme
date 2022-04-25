@@ -38,13 +38,13 @@ function blocks_theme_setup() {
 		array(
 			'name' => esc_attr__( 'strong magenta', 'themeLangDomain' ),
 			'slug' => 'strong-magenta',
-			'color' => '#a156b4',
+			'color' => '#a156b4'
 		),
 		array(
 			'name' => esc_attr__( 'very light gray', 'themeLangDomain' ),
 			'slug' => 'very-light-gray',
-			'color' => '#eee',
-		),
+			'color' => '#eee'
+		)
 	) );
 
 	// disable custom colors
@@ -55,17 +55,42 @@ function blocks_theme_setup() {
 		array(
 			'name' 		 => esc_attr__( 'Red to Blue', 'themeLangDomain' ),
 			'gradient' => 'linear-gradient(135deg,#e4064d 0%, #2c59ee 100%)',
-			'slug' 		 => 'red-to-blue',
+			'slug' 		 => 'red-to-blue'
 		),
 		array(
 			'name' => esc_attr__( 'Green to Yellow', 'themeLangDomain' ),
 			'gradient' => 'linear-gradient(135deg,#3ce406 0%, #d63029 100%)',
-			'slug' => 'green-to-yellow',
-		),
+			'slug' => 'green-to-yellow'
+		)
 	) );
 
 	// disable the custom gradient options under color settings
 	add_theme_support( 'disable-custom-gradients' );
+
+	// custom font size options
+	add_theme_support( 'editor-font-sizes', array(
+		array(
+			'name' => esc_attr__( 'Small', 'themeLangDomain' ),
+			'size' => '12',
+			'slug' => 'small'
+		),
+		array(
+			'name' => esc_attr__( 'Regular', 'themeLangDomain' ),
+			'size' => '16',
+			'slug' => 'regular'
+		),
+		array(
+			'name' => esc_attr__( 'Large', 'themeLangDomain' ),
+			'size' => '36',
+			'slug' => 'large'
+		)
+	) );
+
+	// disable the custom font sizes
+	add_theme_support( 'disable-custom-font-sizes' );
+
+	// add custom line height
+	add_theme_support( 'custom-line-height' );
 
 	/*
 		* Make theme available for translation.
