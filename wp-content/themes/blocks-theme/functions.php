@@ -33,6 +33,40 @@ function blocks_theme_setup() {
 	// add width support on the editor side
 	add_theme_support( 'align-wide' );
 
+	// add color palette support
+	add_theme_support( 'editor-color-palette', array(
+		array(
+			'name' => esc_attr__( 'strong magenta', 'themeLangDomain' ),
+			'slug' => 'strong-magenta',
+			'color' => '#a156b4',
+		),
+		array(
+			'name' => esc_attr__( 'very light gray', 'themeLangDomain' ),
+			'slug' => 'very-light-gray',
+			'color' => '#eee',
+		),
+	) );
+
+	// disable custom colors
+	add_theme_support( 'disable-custom-colors' );
+
+	// add editor gradient presets
+	add_theme_support( 'editor-gradient-presets', array(
+		array(
+			'name' 		 => esc_attr__( 'Red to Blue', 'themeLangDomain' ),
+			'gradient' => 'linear-gradient(135deg,#e4064d 0%, #2c59ee 100%)',
+			'slug' 		 => 'red-to-blue',
+		),
+		array(
+			'name' => esc_attr__( 'Green to Yellow', 'themeLangDomain' ),
+			'gradient' => 'linear-gradient(135deg,#3ce406 0%, #d63029 100%)',
+			'slug' => 'green-to-yellow',
+		),
+	) );
+
+	// disable the custom gradient options under color settings
+	add_theme_support( 'disable-custom-gradients' );
+
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
