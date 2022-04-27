@@ -1,5 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+
+// BlockControls (component) allow you to add custom buttons to our block
+import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor';
+import { ToolbarGroup, ToolbarButton, ToolbarDropdownMenu } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -9,20 +12,87 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { text } = attributes;
 
 	return (
-		// RichText Docs
-		// https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/rich-text/README.md
-		<RichText 
-			{ ...useBlockProps() }
+
+		// wrap two elements in a fragment
+		<>
 			
-			// callback function
-			onChange={ (value) => setAttributes({ text: value }) }
+			<BlockControls group="inline">
+				<p>Inline Controls</p>
+			</BlockControls>
+			
+			<BlockControls group="block"> 
+				<p>Block Controls</p>
+			</BlockControls>
 
-			// set text value to whatever is typed in. this also allows the update function to work in the dashboard.
-			value={ text }
+			<BlockControls 
+				group="other"
+				controls={ [ 
+					{
+						title: "Button 1",
+						icon: "admin-generic",
+						isActive: true,
+						onClick: () => console.log("Button 1 Clicked"),
+					},
+					{
+						title: "Button 1",
+						icon: "admin-collapse",
+						onClick: () => console.log("Button 2 Clicked"),
+					}, 
+				] } 
+			>
+			{text && (
+				<ToolbarGroup>
+					<ToolbarButton 
+						title="Align Left"
+						icon="editor-alignleft"
+						onClick={ () => console.log( 'Align Left' )}
+					/>
+					<ToolbarButton 
+						title="Align Center"
+						icon="editor-aligncenter"
+						onClick={ () => console.log( 'Align Center' )}
+					/>
+					<ToolbarButton 
+						title="Align Right"
+						icon="editor-alignright"
+						onClick={ () => console.log( 'Align Right' )}
+					/>
+					<ToolbarDropdownMenu 
+						icon="arrow-down-alt2"
+						label={ __("More Alignments", "text-box") }
+						controls={[
+							{
+								 title: __("Wide", "text-box"),
+								 icon: "align-wide",
+							},
+							{
+								 title: __("Full", "text-box"),
+								 icon: "align-full-width",
+							},
+						]}
+					/>
+				</ToolbarGroup>
+			) }
+				<ToolbarGroup>
+						<p>lksjdhbsjbv</p>
+				</ToolbarGroup>
+			</BlockControls>
+			<RichText 
+				{ ...useBlockProps() }
+				
+				// callback function
+				onChange={ (value) => setAttributes({ text: value }) }
 
-			placeholder={ __('Your Text', 'text-box') } 
-			tagName='h4' 
-			allowedFormats={ ['core/bold'] }
-		/>
+				// set text value to whatever is typed in. this also allows the update function to work in the dashboard.
+				value={ text }
+
+				placeholder={ __('Your Text', 'text-box') } 
+				tagName='h4' 
+
+				// note: pass an empty array if you don't want the user to edit the styles at all
+				allowedFormats={ [] }
+			/>
+		</>
+
 	);
 }
