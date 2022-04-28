@@ -1,8 +1,10 @@
+
 import { __ } from '@wordpress/i18n';
 
 // BlockControls (component) allow you to add custom buttons to our block
 // InspectorControls (component) editor side bar region
-import { useBlockProps, RichText, BlockControls, InspectorControls, AlignmentToolbar } from '@wordpress/block-editor';
+// ContrastChecker will show a warning for you if the color blend is too hard to read
+import { useBlockProps, RichText, BlockControls, InspectorControls, AlignmentToolbar, PanelColorSettings, ContrastChecker } from '@wordpress/block-editor';
 // import { ToolbarGroup, ToolbarButton, ToolbarDropdownMenu } from '@wordpress/components';
 
 // import components
@@ -21,62 +23,71 @@ export default function Edit( { attributes, setAttributes } ) {
 	// console.log( attributes );
 
 	// extract the content from our attributes
-	const { text, alignment } = attributes;
+	const { text, alignment, backgroundColor, textColor } = attributes;
 
 	// create callback function for alignment
 	const onChangeAlignment = (newAlignment) => {
 		setAttributes( { alignment: newAlignment } );
-	}
+	};
 
 	// create callback function for text
 	const onChangeText = (newText) => {
 		setAttributes( { text: newText } );
-	}
+	};
 
+	// create callback function for backgroundColor
+	const onBackgroundColorChange = (newBgColor) => {
+		setAttributes( { backgroundColor: newBgColor } );
+	};
+
+	// create callback function for textColor
+	const onTextColorChange = (newTextColor) => {
+		setAttributes( { textColor: newTextColor } );
+	};
+	
 	return (
 
 		// wrap elements in a fragment
 		<>
 			<InspectorControls>
-				<PanelBody 
+				<PanelColorSettings 
+					title={ __("Color Settings", "text-box") }
+					icon="admin-appearance"
+					initialOpen
+					disableCustomColors={ false }
+					colorSettings={ [ 
+						{
+							value: backgroundColor,
+							onChange: onBackgroundColorChange,
+							label:  __( "Background Color", "text-box" ),
+						},
+						{
+							value: textColor,
+							onChange: onTextColorChange,
+							label:  __( "Text Color", "text-box" ),
+						}
+					 ] }
+				>
+					<ContrastChecker
+						textColor={ textColor }
+						backgroundColor={ backgroundColor }
+					/>
+				</PanelColorSettings>
+				{/* <PanelBody 
 					title={ __("Color Settings", "text-box") }
 					icon="admin-appearance"
 					initialOpen
 				>
-					<TextControl 
-						label="Input Label" 
-						value={ text } 
-						onChange={ onChangeText }
-						help="help text"
-					/>
-					<TextareaControl 
-						label="Text Area Label" 
-						value={ text } 
-						onChange={ onChangeText }
-						help="help text"
-					/>
-					<ToggleControl 
-						label="Toggle Label" 
-						checked={true}
-						onChange={ (value) => console.log(value) }
-					/>
-					<AnglePickerControl 
-						label="Angle Selector" 
-					/>
-					<ColorPicker
-						label="Color Selector"
-						color={ 'f03' } 
-						onChangeComplete={ (value) => console.log(value) } 
-					/>
 					<ColorPalette
 						label="Color Palette"
 						color={ [ 
 							{ name: "red", color:"#F00" },
 							{ name: "black", color:"#000" },
-						] } 
-						onChange={ (value) => console.log(value) }
+						] }
+						value={ backgroundColor } 
+						onChange={ onBackgroundColorChange }
 					/>
-				</PanelBody>
+				</PanelBody> */}
 			</InspectorControls>
 			
 			<BlockControls>
@@ -93,10 +104,14 @@ export default function Edit( { attributes, setAttributes } ) {
 					
 					// note: use acute or back quotes
 					className: `text-box-align-${ alignment }`,
+					style: {
+						backgroundColor,
+						color: textColor,
+					},
 				} ) }
 
 				// note: you can add class names this way, but it would override what useBlockProps is doing
-				//className="something"
+				// className="something"
 				
 				// callback function (inline function)
 				// onChange={ (value) => setAttributes({ text: value }) }
