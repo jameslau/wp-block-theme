@@ -65,7 +65,7 @@ function blocks_theme_setup() {
 	) );
 
 	// disable the custom gradient options under color settings
-	add_theme_support( 'disable-custom-gradients' );
+	// add_theme_support( 'disable-custom-gradients' );
 
 	// custom font size options
 	add_theme_support( 'editor-font-sizes', array(

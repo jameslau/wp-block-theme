@@ -8,7 +8,12 @@
 	"textdomain": "text-box",
 	"keywords": ["text", "paragraph", "box"],
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true,
+			"gradients": true
+		}
 	},
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
@@ -27,13 +32,12 @@
 			"type": "string"
 		},
 		"textColor": {
-			"type": "string"
+			"type": "string",
+			"default": "very-light-grey"
 		},
-		"customBackgroundColor": {
-			"type": "string"
-		},
-		"customTextColor": {
-			"type": "string"
+		"gradient": {
+			"type": "string",
+			"default": "green-to-yellow"
 		}
 	}
 }
