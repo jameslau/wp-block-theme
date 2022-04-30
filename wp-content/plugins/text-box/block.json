@@ -2,10 +2,9 @@
 	"apiVersion": 2,
 	"name": "gutenbergblocks/text-box",
 	"title": "Text Box",
-	"description": "A box of text",
 	"category": "text",
 	"icon": "buddicons-activity",
-	"textdomain": "text-box",
+	"description": "A box of text",
 	"keywords": ["text", "paragraph", "box"],
 	"supports": {
 		"html": false,
@@ -13,8 +12,12 @@
 			"background": true,
 			"text": true,
 			"gradients": true
+		},
+		"spacing": {
+			"padding": true
 		}
 	},
+	"textdomain": "text-box",
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css",
@@ -36,8 +39,19 @@
 			"default": "very-light-grey"
 		},
 		"gradient": {
-			"type": "string",
-			"default": "green-to-yellow"
+			"type": "string"
+		},
+		"style": {
+			"type": "object",
+			"default": {
+				"color": {
+					"background": "#f03"
+				},
+				"spacing": {
+					"padding": {"top":"50px","right":"50px",
+					"bottom": "50px", "left": "50px"}
+				}
+			}
 		}
 	}
 }
