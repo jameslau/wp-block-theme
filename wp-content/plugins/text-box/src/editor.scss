@@ -4,6 +4,10 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-boilerplate {
-	border: 1px dotted #f03;
+.wp-block-gutenbergblocks-text-box {
+
+	&.text-box-title {
+		margin: 0;
+	}
+
 }

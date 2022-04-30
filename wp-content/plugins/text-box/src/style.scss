@@ -7,6 +7,10 @@
 
 .wp-block-gutenbergblocks-text-box {
 
+	&.text-box-title {
+		margin: 0;
+	}
+
 	&.text-box-align-right {
 		text-align: right;
 	}
