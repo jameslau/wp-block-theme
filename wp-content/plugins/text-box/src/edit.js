@@ -4,7 +4,16 @@ import { __ } from '@wordpress/i18n';
 // BlockControls (component) allow you to add custom buttons to our block
 // InspectorControls (component) editor side bar region
 // ContrastChecker will show a warning for you if the color blend is too hard to read
-import { useBlockProps, RichText, BlockControls, InspectorControls, AlignmentToolbar, PanelColorSettings, ContrastChecker } from '@wordpress/block-editor';
+import { 
+	useBlockProps, 
+	RichText, 
+	BlockControls, 
+	InspectorControls, 
+	AlignmentToolbar, 
+	PanelColorSettings, 
+	ContrastChecker,
+	withColors
+} from '@wordpress/block-editor';
 // import { ToolbarGroup, ToolbarButton, ToolbarDropdownMenu } from '@wordpress/components';
 
 // import components
@@ -19,11 +28,23 @@ import { PanelBody, TextControl, TextareaControl, ToggleControl, AnglePickerCont
 
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes } ) {
+function Edit( props ) {
 	// console.log( attributes );
+ 
+	// destructure from props
+	const {
+		attributes,
+		setAttributes,
+		backgroundColor,
+		textColor,
+		setBackgroundColor,
+		setTextColor,
+	} = props;
 
 	// extract the content from our attributes
-	const { text, alignment, backgroundColor, textColor } = attributes;
+	const { text, alignment } = attributes;
+	
+	console.log( attributes, props ); 
 
 	// create callback function for alignment
 	const onChangeAlignment = (newAlignment) => {
@@ -36,14 +57,14 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	// create callback function for backgroundColor
-	const onBackgroundColorChange = (newBgColor) => {
-		setAttributes( { backgroundColor: newBgColor } );
-	};
+	// const onBackgroundColorChange = (newBgColor) => {
+	// 	setAttributes( { backgroundColor: newBgColor } );
+	// };
 
 	// create callback function for textColor
-	const onTextColorChange = (newTextColor) => {
-		setAttributes( { textColor: newTextColor } );
-	};
+	// const onTextColorChange = (newTextColor) => {
+	// 	setAttributes( { textColor: newTextColor } );
+	// };
 	
 	return (
 
@@ -55,22 +76,22 @@ export default function Edit( { attributes, setAttributes } ) {
 					icon="admin-appearance"
 					initialOpen
 					disableCustomColors={ false }
-					colorSettings={ [ 
+					colorSettings={ [
 						{
-							value: backgroundColor,
-							onChange: onBackgroundColorChange,
-							label:  __( "Background Color", "text-box" ),
+							value: backgroundColor.color,
+							onChange: setBackgroundColor,
+							label: __( 'Background Color', 'text-box' ),
 						},
 						{
-							value: textColor,
-							onChange: onTextColorChange,
-							label:  __( "Text Color", "text-box" ),
-						}
-					 ] }
+							value: textColor.color,
+							onChange: setTextColor,
+							label: __( 'Text Color', 'text-box' ),
+						}, 
+					] }
 				>
 					<ContrastChecker
-						textColor={ textColor }
-						backgroundColor={ backgroundColor }
+						textColor={ textColor.color }
+						backgroundColor={ backgroundColor.color }
 					/>
 				</PanelColorSettings>
 				{/* <PanelBody 
@@ -105,8 +126,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					// note: use acute or back quotes
 					className: `text-box-align-${ alignment }`,
 					style: {
-						backgroundColor,
-						color: textColor,
+						// backgroundColor,
+
+						// add the key of backgroundColor
+						backgroundColor: backgroundColor.color,
+						color: textColor.color,
 					},
 				} ) }
 
@@ -135,3 +159,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	);
 }
+
+// note: withColors is a function
+export default withColors({
+	backgroundColor: "backgroundColor",
+	textColor: "color",
+}) ( Edit );

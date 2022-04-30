@@ -48,7 +48,7 @@ function blocks_theme_setup() {
 	) );
 
 	// disable custom colors
-	add_theme_support( 'disable-custom-colors' );
+	// add_theme_support( 'disable-custom-colors' );
 
 	// add editor gradient presets
 	add_theme_support( 'editor-gradient-presets', array(
