@@ -9,25 +9,13 @@ import save from './save';
 
 import { __ } from '@wordpress/i18n';
 import v1 from './v1';
+import v2 from './v2';
 
 registerBlockType( 'gutenbergblocks/text-box', {
 	edit: Edit,
 	save,
-	// you can add controls for deprecated items
-	deprecated: [
-
-		// place the v1 object that represents the file here
-		v1
-
-		// {
-		// 	// in put the function of your old block
-		// 	// save
-
-		// 	// find the deprecated files in the v1.js folder
-			
-
-		// }
-	],
+	// you must place them in reverse chronological order
+	deprecated: [ v2, v1 ],
 	variations: [
 		{
 			name: 'gutenbergblocks/gradient-text-box',
@@ -50,7 +38,7 @@ registerBlockType( 'gutenbergblocks/text-box', {
 					// note: create new text-box block
 					return createBlock ( 'gutenbergblocks/text-box', {
 						text: content,
-						alignment: align
+						textAlignment: align
 					} );
 				}
 			},
@@ -83,12 +71,12 @@ registerBlockType( 'gutenbergblocks/text-box', {
 				},
 
 				// note: receive the attributes of our block  
-				transform: ( { text, alignment } ) => { 
+				transform: ( { text, textAlignment } ) => { 
 
 					// note: creates new paragraph block
 					return createBlock ( 'core/paragraph', {
 						content: text,
-						align: alignment 
+						align: textAlignment 
 					} );
 				}
 			}
