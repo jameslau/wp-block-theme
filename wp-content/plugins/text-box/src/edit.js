@@ -35,10 +35,10 @@ export default function Edit( props ) {
 	// note: get styles from our styles attributes for the visualizer component
 	// note: destructure shadow
 	// note: destructure shadowOpacity
-	const { text, alignment, style, shadow, shadowOpacity } = attributes;
+	const { text, textAlignment, style, shadow, shadowOpacity } = attributes;
 
 	const onChangeAlignment = ( newAlignment ) => {
-		setAttributes( { alignment: newAlignment } );
+		setAttributes( { textAlignment: newAlignment } );
 	};
 	const onChangeText = ( newText ) => {
 		setAttributes( { text: newText } );
@@ -55,7 +55,7 @@ export default function Edit( props ) {
 		setAttributes( { shadowOpacity: newShadowOpacity } );
 	};
 
-	const classes = classnames( `text-box-align-${ alignment }`, {
+	const classes = classnames( `text-box-align-${ textAlignment }`, {
 		// note: the key has to be the classname and the value is shadow is shadow is true. the variable would be the value 
 		'has-shadow' : shadow,
 		// note: set the various shadow ranges into a template literal
@@ -100,7 +100,7 @@ export default function Edit( props ) {
 				] }
 			>
 				<AlignmentToolbar
-					value={ alignment }
+					value={ textAlignment }
 					onChange={ onChangeAlignment }
 				/>
 			</BlockControls>

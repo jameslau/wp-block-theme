@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { omit } from 'lodash';
 import blockData from '../block.json';
 
-const v1 = {
+const v2 = {
   supports: {
 		html: false,
 		color: {
@@ -18,15 +18,12 @@ const v1 = {
   attributes: {
     ...omit(blockData.attributes, ['textAlignment']),
     alignment: {
-      type: 'string',
-      default: 'left',
-    },
-    text: {
-      type: "string",
-			source: "html",
-			selector: "h4",
-    },
+			type: 'string',
+			default: 'left', 
+		},
   },
+  // migrate old attributes to new attributes we use the migrate function
+  // add the migrate function which can receive the older attributes from the block
   migrate: (attributes) => {
     return {
       ...omit(attributes, ['alignment']),
@@ -47,11 +44,11 @@ const v1 = {
 			{ ...useBlockProps.save( {
 				className: classes,
 			} ) }
-			tagName="h4"
+			tagName="p"
 			value={ text }
 		/>
 	);
 }
 }
 
-export default v1;
+export default v2;
